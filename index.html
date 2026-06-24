@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Custom Graphics</title>
+  <link rel="stylesheet" href="src/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<div id="auth-screen" class="screen active">
+  <div class="auth-bg">
+    <div class="auth-particles" id="particles"></div>
+    <div class="auth-card">
+      <div class="logo-wrap">
+        <div class="logo-icon">⬡</div>
+        <span class="logo-text">Custom<b>Graphics</b></span>
+      </div>
+      <p class="auth-sub">Моды, текстуры и скины — в одном месте</p>
+      <div class="tabs">
+        <button class="tab active" data-tab="login">Войти</button>
+        <button class="tab" data-tab="register">Регистрация</button>
+      </div>
+      <div id="login-form" class="form-block active">
+        <input type="email" id="login-email" class="input" placeholder="Email" />
+        <input type="password" id="login-pass" class="input" placeholder="Пароль" />
+        <button class="btn-primary" id="login-btn">Войти</button>
+        <p id="login-err" class="err-msg"></p>
+      </div>
+      <div id="register-form" class="form-block">
+        <input type="text" id="reg-name" class="input" placeholder="Никнейм" />
+        <input type="email" id="reg-email" class="input" placeholder="Email" />
+        <input type="password" id="reg-pass" class="input" placeholder="Пароль (мин. 6 символов)" />
+        <button class="btn-primary" id="register-btn">Создать аккаунт</button>
+        <p id="reg-err" class="err-msg"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="main-screen" class="screen">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon small">⬡</div>
+      <span class="logo-text small">Custom<b>Graphics</b></span>
+    </div>
+    <nav class="nav">
+      <a href="#" class="nav-item active" data-section="home"><span class="nav-icon">🏠</span><span>Главная</span></a>
+      <a href="#" class="nav-item" data-section="gta5"><span class="nav-icon">🚗</span><span>GTA V</span></a>
+      <a href="#" class="nav-item" data-section="minecraft"><span class="nav-icon">⛏️</span><span>Minecraft</span></a>
+      <a href="#" class="nav-item" data-section="settings"><span class="nav-icon">⚙️</span><span>Настройки</span></a>
+    </nav>
+    <div class="sidebar-user">
+      <div class="avatar" id="user-avatar">?</div>
+      <div class="user-info">
+        <span class="user-name" id="user-name-display">Загрузка...</span>
+        <span class="user-role" id="user-role-display">Пользователь</span>
+      </div>
+      <button class="logout-btn" id="logout-btn" title="Выйти">⏻</button>
+    </div>
+  </aside>
+
+  <main class="content">
+    <section id="section-home" class="section active">
+      <div class="hero-banner">
+        <div class="hero-text">
+          <h1>Custom<span class="accent">Graphics</span></h1>
+          <p>Лучшие реshader'ы, скины и ресурс-паки для GTA V и Minecraft</p>
+        </div>
+        <div class="hero-badges">
+          <div class="badge gta">GTA V</div>
+          <div class="badge mc">Minecraft</div>
+        </div>
+      </div>
+      <div class="home-grid" id="home-featured"></div>
+    </section>
+
+    <section id="section-gta5" class="section">
+      <div class="section-header">
+        <h2>🚗 GTA V — Реshader'ы и скины</h2>
+        <div class="filter-bar">
+          <button class="filter active" data-filter="all">Все</button>
+          <button class="filter" data-filter="reshade">ReShade</button>
+          <button class="filter" data-filter="skin">Скины</button>
+          <button class="filter" data-filter="sky">Небо</button>
+          <button class="filter" data-filter="other">Другое</button>
+        </div>
+      </div>
+      <div class="cards-grid" id="gta-cards"></div>
+    </section>
+
+    <section id="section-minecraft" class="section">
+      <div class="section-header">
+        <h2>⛏️ Minecraft — Ресурс-паки</h2>
+        <div class="filter-bar">
+          <button class="filter active" data-filter="all">Все</button>
+          <button class="filter" data-filter="resourcepack">Ресурс-пак</button>
+          <button class="filter" data-filter="totem">Тотемы</button>
+          <button class="filter" data-filter="other">Другое</button>
+        </div>
+      </div>
+      <div class="mc-install-block">
+        <h3>📁 Автоустановка ресурс-пака</h3>
+        <p>Укажите папку resourcepacks и версию Minecraft:</p>
+        <div class="mc-row">
+          <input type="text" id="mc-folder" class="input small" placeholder="C:\Users\...\resourcepacks" readonly />
+          <button class="btn-sec" id="pick-folder-btn">Обзор...</button>
+          <select id="mc-version" class="input small select">
+            <option>1.21</option><option>1.20</option><option>1.19</option>
+            <option>1.18</option><option>1.17</option><option>1.16</option>
+          </select>
+        </div>
+        <p class="hint">* В десктоп-версии (Electron) путь выбирается автоматически.</p>
+      </div>
+      <div class="cards-grid" id="mc-cards"></div>
+    </section>
+
+    <section id="section-settings" class="section">
+      <h2>⚙️ Настройки</h2>
+      <div class="settings-card">
+        <h3>Аккаунт</h3>
+        <div class="settings-row"><span>Email:</span><span id="s-email">—</span></div>
+        <div class="settings-row"><span>Никнейм:</span><span id="s-name">—</span></div>
+        <div class="settings-row"><span>Роль:</span><span id="s-role">—</span></div>
+      </div>
+      <div class="settings-card" id="owner-card" style="display:none">
+        <h3>👑 Панель владельца — Загрузка контента</h3>
+        <div class="upload-form">
+          <select id="upload-game" class="input">
+            <option value="gta5">GTA V</option>
+            <option value="minecraft">Minecraft</option>
+          </select>
+          <select id="upload-type" class="input">
+            <option value="reshade">ReShade</option>
+            <option value="skin">Скин</option>
+            <option value="sky">Небо</option>
+            <option value="resourcepack">Ресурс-пак</option>
+            <option value="totem">Тотем</option>
+            <option value="other">Другое</option>
+          </select>
+          <input type="text" id="upload-title" class="input" placeholder="Название" />
+          <input type="text" id="upload-author" class="input" placeholder="Автор" />
+          <textarea id="upload-desc" class="input textarea" placeholder="Описание"></textarea>
+          <input type="text" id="upload-version" class="input" placeholder="Версия (напр. 1.0)" />
+          <div class="file-row">
+            <label class="file-label">🖼️ Превью (изображение)
+              <input type="file" id="upload-img" accept="image/*" class="hidden-input"/>
+            </label>
+            <label class="file-label">📦 Файл мода/пака
+              <input type="file" id="upload-file" class="hidden-input"/>
+            </label>
+          </div>
+          <div id="upload-progress-wrap" style="display:none">
+            <div class="progress-bar-outer"><div class="progress-bar-inner" id="upload-bar"></div></div>
+            <span id="upload-percent">0%</span>
+          </div>
+          <button class="btn-primary" id="do-upload-btn">⬆️ Загрузить в базу</button>
+          <p id="upload-msg" class="err-msg"></p>
+        </div>
+      </div>
+      <div class="settings-card">
+        <h3>🔑 Код владельца</h3>
+        <p style="color:var(--text-muted);font-size:13px;margin-bottom:12px">Введите код для получения прав администратора:</p>
+        <div class="mc-row">
+          <input type="password" id="owner-code-input" class="input small" placeholder="Код доступа" />
+          <button class="btn-sec" id="apply-code-btn">Применить</button>
+        </div>
+        <p id="code-msg" class="err-msg" style="margin-top:8px"></p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="dl-modal" class="modal-overlay hidden">
+  <div class="modal-card">
+    <button class="modal-close" id="modal-close">✕</button>
+    <img id="modal-img" src="" alt="preview" class="modal-img" style="display:none"/>
+    <h3 id="modal-title">Название</h3>
+    <p id="modal-author" class="modal-meta"></p>
+    <p id="modal-desc" class="modal-desc"></p>
+    <div id="mc-options" class="hidden" style="margin-top:14px">
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px">📁 Папка resourcepacks:</p>
+      <div class="mc-row">
+        <input type="text" id="modal-mc-folder" class="input small" placeholder="Путь к папке..." readonly/>
+        <button class="btn-sec" id="modal-pick-folder">Обзор...</button>
+      </div>
+    </div>
+    <div id="dl-progress-wrap" style="display:none;margin-top:14px">
+      <div class="progress-bar-outer"><div class="progress-bar-inner" id="dl-bar"></div></div>
+      <span id="dl-percent">0%</span>
+    </div>
+    <button class="btn-primary wide" id="do-download-btn">⬇️ Скачать</button>
+  </div>
+</div>
+
+<script type="module" src="src/app.js"></script>
+</body>
+</html>
