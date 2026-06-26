@@ -1,535 +1,174 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NOVUS ROLEPLAY — Скачать клиент / Вход</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0a0712;
-    --bg-soft:#100a1c;
-    --surface:#170f25;
-    --surface-2:#1f1530;
-    --violet:#9b5cf6;
-    --magenta:#ef4fc0;
-    --blue:#5b8cff;
-    --green:#3ddc97;
-    --red:#ff6b8a;
-    --text:#f4eefc;
-    --text-dim:#ab9fc5;
-    --text-faint:#6d6184;
-    --border:rgba(255,255,255,.09);
-    --grad:linear-gradient(135deg,var(--violet),var(--magenta));
-    --grad-soft:linear-gradient(135deg,rgba(155,92,246,.16),rgba(239,79,192,.16));
-  }
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;line-height:1.6;}
-  ::selection{background:var(--violet);color:#fff;}
-  h1,h2,h3,.display{font-family:'Unbounded',sans-serif;letter-spacing:-0.01em;}
-  .mono{font-family:'JetBrains Mono',monospace;}
-  a{color:inherit;text-decoration:none;}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
-
-  .eyebrow{
-    font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:500;
-    letter-spacing:.18em;text-transform:uppercase;color:var(--magenta);
-    display:flex;align-items:center;gap:10px;
-  }
-  .eyebrow::before{content:'';width:18px;height:1px;background:var(--magenta);}
-
-  /* NAV */
-  header{
-    position:fixed;top:0;left:0;right:0;z-index:100;
-    background:rgba(10,7,18,.72);backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--border);
-  }
-  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;max-width:1180px;margin:0 auto;}
-  .logo{display:flex;align-items:center;gap:10px;font-weight:700;}
-  .logo-mark{width:36px;height:36px;border-radius:9px;background:var(--grad);display:flex;align-items:center;justify-content:center;transform:rotate(-6deg);flex-shrink:0;}
-  .logo-mark svg{width:18px;height:18px;transform:rotate(6deg);}
-  .logo-text{font-family:'Unbounded',sans-serif;font-size:17px;font-weight:700;}
-  .logo-text span{color:var(--text-dim);font-weight:500;}
-  .nav-links{display:flex;gap:34px;align-items:center;}
-  .nav-links a{font-size:14.5px;font-weight:500;color:var(--text-dim);transition:color .2s;}
-  .nav-links a.active{color:var(--text);}
-  .nav-links a:hover{color:var(--text);}
-  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
-  .burger span{width:22px;height:2px;background:var(--text);border-radius:2px;}
-
-  .btn{
-    font-family:'Inter',sans-serif;font-weight:600;font-size:14.5px;padding:11px 22px;
-    border-radius:10px;border:1px solid transparent;cursor:pointer;
-    transition:transform .18s, box-shadow .18s, background .18s, border-color .18s;
-    display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;
-  }
-  .btn-primary{background:var(--grad);color:#fff;box-shadow:0 8px 24px -8px rgba(239,79,192,.55);}
-  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px -8px rgba(239,79,192,.7);}
-  .btn-ghost{background:rgba(255,255,255,.04);border-color:var(--border);color:var(--text);}
-  .btn-ghost:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);}
-  .btn-lg{padding:17px 34px;font-size:16px;border-radius:13px;}
-  .btn-block{width:100%;}
-  .btn[disabled]{opacity:.7;cursor:default;transform:none !important;}
-
-  /* DOWNLOAD HERO */
-  .dl-hero{
-    position:relative;padding:160px 0 90px;
-    background:
-      radial-gradient(ellipse 60% 50% at 85% 0%, rgba(91,140,255,.14), transparent 60%),
-      radial-gradient(ellipse 70% 60% at 10% 10%, rgba(239,79,192,.13), transparent 60%),
-      linear-gradient(180deg,var(--bg) 0%, var(--bg-soft) 100%);
-    text-align:center;
-    overflow:hidden;
-  }
-  .hero-grid{
-    position:absolute;inset:0;
-    background-image:linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-    background-size:42px 42px;
-    mask-image:linear-gradient(to bottom, black 0%, transparent 80%);
-    pointer-events:none;
-  }
-  .dl-hero h1{font-size:clamp(34px,5.4vw,54px);font-weight:800;line-height:1.12;position:relative;z-index:2;}
-  .dl-hero h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .dl-hero p.lead{color:var(--text-dim);max-width:520px;margin:18px auto 0;font-size:16px;position:relative;z-index:2;}
-  .dl-hero .eyebrow{justify-content:center;margin-bottom:18px;position:relative;z-index:2;}
-  .dl-hero .eyebrow::after{content:'';width:18px;height:1px;background:var(--magenta);}
-
-  .dl-actions{position:relative;z-index:2;margin-top:38px;display:flex;flex-direction:column;align-items:center;gap:14px;}
-  .dl-meta{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--text-faint);}
-  .dl-meta b{color:var(--text-dim);font-weight:600;}
-  .dl-note{font-size:12.5px;color:var(--text-faint);margin-top:2px;}
-  .dl-note a{color:var(--violet);text-decoration:underline;text-decoration-color:rgba(155,92,246,.4);}
-
-  .mirrors{position:relative;z-index:2;display:flex;gap:10px;justify-content:center;margin-top:22px;flex-wrap:wrap;}
-  .mirror-btn{
-    font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--text-dim);
-    background:var(--surface);border:1px solid var(--border);border-radius:9px;
-    padding:9px 16px;transition:border-color .2s,color .2s;
-  }
-  .mirror-btn:hover{border-color:rgba(155,92,246,.4);color:var(--text);}
-
-  /* REQUIREMENTS */
-  .reqs{padding:0 0 110px;position:relative;}
-  .reqs-card{
-    max-width:760px;margin:0 auto;
-    background:var(--surface);border:1px solid var(--border);border-radius:20px;
-    padding:8px;
-  }
-  .reqs-head{display:flex;gap:0;}
-  .reqs-head button{
-    flex:1;padding:16px;background:none;border:none;color:var(--text-faint);
-    font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;
-    cursor:pointer;border-radius:14px;transition:background .2s,color .2s;
-  }
-  .reqs-head button.active{background:var(--surface-2);color:var(--text);}
-  .reqs-table{padding:22px 26px 14px;display:none;}
-  .reqs-table.active{display:block;}
-  .reqs-row{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--border);font-size:14.5px;}
-  .reqs-row:last-child{border-bottom:none;}
-  .reqs-row .k{color:var(--text-faint);}
-  .reqs-row .v{color:var(--text);font-weight:500;text-align:right;}
-
-  /* AUTH SECTION */
-  .auth{
-    background:var(--bg-soft);
-    padding:110px 0;
-    position:relative;
-  }
-  .auth-grid{display:grid;grid-template-columns:1fr 440px;gap:0;border-radius:24px;overflow:hidden;border:1px solid var(--border);}
-
-  .auth-visual{
-    position:relative;
-    background:
-      radial-gradient(ellipse 80% 60% at 30% 0%, rgba(155,92,246,.22), transparent 60%),
-      radial-gradient(ellipse 70% 50% at 90% 100%, rgba(239,79,192,.18), transparent 60%),
-      var(--bg);
-    padding:54px;
-    display:flex;flex-direction:column;justify-content:space-between;
-    min-height:560px;
-    overflow:hidden;
-  }
-  .auth-visual .skyline-mini{position:absolute;left:0;right:0;bottom:0;height:150px;display:flex;align-items:flex-end;gap:3px;opacity:.85;}
-  .auth-visual .building{
-    flex:1 0 auto;background:linear-gradient(180deg, rgba(40,28,62,.9), rgba(15,10,24,1));
-    background-image:radial-gradient(circle, rgba(255,224,160,.15) 1px, transparent 1.4px),linear-gradient(180deg, rgba(40,28,62,.9), rgba(15,10,24,1));
-    background-size:9px 13px, auto;border-top:1px solid rgba(155,92,246,.18);
-  }
-  .auth-visual-top{position:relative;z-index:2;}
-  .auth-visual-bottom{position:relative;z-index:2;}
-  .auth-visual h2{font-size:30px;font-weight:800;line-height:1.2;margin-top:18px;max-width:340px;}
-  .auth-visual p{color:var(--text-dim);margin-top:14px;max-width:320px;font-size:14.5px;}
-  .auth-stats{display:flex;gap:26px;margin-top:30px;}
-  .auth-stats div b{display:block;font-family:'Unbounded',sans-serif;font-size:20px;font-weight:800;}
-  .auth-stats div span{font-size:12px;color:var(--text-faint);}
-
-  .auth-card{background:var(--surface);padding:48px 42px;}
-  .tab-switch{display:flex;background:var(--surface-2);border-radius:12px;padding:5px;margin-bottom:30px;}
-  .tab-switch button{
-    flex:1;padding:11px;background:none;border:none;color:var(--text-dim);
-    font-family:'Inter',sans-serif;font-weight:600;font-size:14px;border-radius:9px;cursor:pointer;
-    transition:background .2s,color .2s;
-  }
-  .tab-switch button.active{background:var(--grad);color:#fff;}
-
-  .field{margin-bottom:18px;}
-  .field label{font-size:13px;color:var(--text-dim);margin-bottom:7px;display:block;font-weight:500;}
-  .field-input{position:relative;}
-  .field input{
-    width:100%;padding:13px 16px;background:var(--surface-2);border:1px solid var(--border);
-    border-radius:10px;color:var(--text);font-family:'Inter',sans-serif;font-size:14.5px;
-    transition:border-color .2s, box-shadow .2s;
-  }
-  .field input::placeholder{color:var(--text-faint);}
-  .field input:focus{border-color:var(--violet);outline:none;box-shadow:0 0 0 3px rgba(155,92,246,.15);}
-  .field input.error{border-color:var(--red);}
-  .field .err-msg{font-size:12.5px;color:var(--red);margin-top:6px;display:none;}
-  .field .err-msg.show{display:block;}
-
-  .eye-toggle{
-    position:absolute;right:14px;top:50%;transform:translateY(-50%);
-    background:none;border:none;cursor:pointer;color:var(--text-faint);padding:4px;
-    display:flex;align-items:center;
-  }
-  .eye-toggle svg{width:18px;height:18px;}
-  .eye-toggle:hover{color:var(--text-dim);}
-
-  .row-between{display:flex;justify-content:space-between;align-items:center;margin:-4px 0 20px;}
-  .link-sm{font-size:13px;color:var(--violet);}
-  .link-sm:hover{text-decoration:underline;}
-
-  .checkbox-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:24px;}
-  .checkbox-row input{margin-top:3px;width:16px;height:16px;accent-color:var(--violet);flex-shrink:0;}
-  .checkbox-row label{font-size:13px;color:var(--text-dim);}
-  .checkbox-row a{color:var(--violet);text-decoration:underline;text-decoration-color:rgba(155,92,246,.4);}
-
-  .switch-note{text-align:center;font-size:13.5px;color:var(--text-dim);margin-top:22px;}
-  .switch-note a{color:var(--violet);font-weight:600;}
-
-  .form-feedback{
-    display:none;align-items:center;gap:10px;
-    background:rgba(61,220,151,.1);border:1px solid rgba(61,220,151,.3);
-    color:var(--green);font-size:13.5px;border-radius:10px;padding:12px 14px;margin-bottom:18px;
-  }
-  .form-feedback.show{display:flex;}
-  .form-feedback svg{width:16px;height:16px;flex-shrink:0;}
-
-  .spinner{
-    width:16px;height:16px;border-radius:50%;
-    border:2px solid rgba(255,255,255,.4);border-top-color:#fff;
-    animation:spin .7s linear infinite;display:none;
-  }
-  .spinner.show{display:inline-block;}
-  @keyframes spin{to{transform:rotate(360deg);}}
-
-  footer{border-top:1px solid var(--border);padding:40px 0;background:var(--bg-soft);}
-  .footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--text-faint);}
-  .footer-bottom a{color:var(--text-dim);}
-  .footer-bottom a:hover{color:var(--text);}
-
-  @media(max-width:900px){
-    .auth-grid{grid-template-columns:1fr;}
-    .auth-visual{min-height:340px;}
-  }
-  @media(max-width:768px){
-    .nav-links{display:none;}
-    .burger{display:flex;}
-    .auth-card{padding:38px 26px;}
-  }
-  @media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important;}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Black Roleplay Launcher</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div id="particles-bg"></div>
 
-<header>
-  <nav>
-    <div class="logo">
-      <div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19V5l14 14V5"/></svg></div>
-      <div class="logo-text">NOVUS <span>RP</span></div>
-    </div>
-    <div class="nav-links">
-      <a href="novus-roleplay.html">Главная</a>
-      <a href="novus-roleplay.html#features">Возможности</a>
-      <a href="#download" class="active">Скачать</a>
-      <a href="#auth">Вход / Регистрация</a>
-    </div>
-    <button class="burger" onclick="document.querySelector('.nav-links').style.display = document.querySelector('.nav-links').style.display === 'flex' ? 'none' : 'flex'">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-</header>
-
-<section class="dl-hero" id="download">
-  <div class="hero-grid"></div>
-  <div class="wrap">
-    <div class="eyebrow">NOVUS LAUNCHER</div>
-    <h1>Один клик — и ты <span>в Лос-Сантосе</span></h1>
-    <p class="lead">Скачай официальный лаунчер: он сам обновится, проверит файлы игры и подключит тебя к серверу.</p>
-
-    <div class="dl-actions">
-      <button class="btn btn-primary btn-lg" id="downloadBtn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
-        Скачать для Windows
-      </button>
-      <div class="dl-meta">ВЕРСИЯ <b>2.4.1</b> · 186 МБ · ОБНОВЛЕНО 20.06.2026</div>
-      <div class="dl-note">Скачивание начнётся автоматически. Не запустилось? <a href="#download">Нажми здесь</a></div>
-    </div>
-
-    <div class="mirrors">
-      <a href="#" class="mirror-btn">Основной сервер</a>
-      <a href="#" class="mirror-btn">Яндекс.Диск</a>
-      <a href="#" class="mirror-btn">Google Drive</a>
-    </div>
-  </div>
-</section>
-
-<section class="reqs">
-  <div class="wrap">
-    <div class="reqs-card">
-      <div class="reqs-head">
-        <button class="active" data-req="min">Минимальные</button>
-        <button data-req="rec">Рекомендуемые</button>
+  <!-- AUTH SCREEN -->
+  <div id="auth-screen" class="screen active">
+    <div class="auth-box">
+      <div class="logo-big">
+        <span class="logo-black">BLACK</span><span class="logo-rp">ROLEPLAY</span>
       </div>
-      <div class="reqs-table active" data-req-table="min">
-        <div class="reqs-row"><span class="k">ОС</span><span class="v">Windows 10 64-bit</span></div>
-        <div class="reqs-row"><span class="k">Процессор</span><span class="v">Intel Core i5-2500K</span></div>
-        <div class="reqs-row"><span class="k">Оперативная память</span><span class="v">8 ГБ</span></div>
-        <div class="reqs-row"><span class="k">Видеокарта</span><span class="v">GTX 660 2 ГБ</span></div>
-        <div class="reqs-row"><span class="k">Место на диске</span><span class="v">95 ГБ</span></div>
-        <div class="reqs-row"><span class="k">Базовая игра</span><span class="v">GTA V (Legacy, Steam/Epic не поддерживаются)</span></div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="switchTab('login')">ВХОД</button>
+        <button class="auth-tab" onclick="switchTab('register')">РЕГИСТРАЦИЯ</button>
       </div>
-      <div class="reqs-table" data-req-table="rec">
-        <div class="reqs-row"><span class="k">ОС</span><span class="v">Windows 10/11 64-bit</span></div>
-        <div class="reqs-row"><span class="k">Процессор</span><span class="v">Intel Core i7-4770</span></div>
-        <div class="reqs-row"><span class="k">Оперативная память</span><span class="v">16 ГБ</span></div>
-        <div class="reqs-row"><span class="k">Видеокарта</span><span class="v">GTX 1060 6 ГБ</span></div>
-        <div class="reqs-row"><span class="k">Место на диске</span><span class="v">95 ГБ (SSD)</span></div>
-        <div class="reqs-row"><span class="k">Базовая игра</span><span class="v">GTA V (Legacy, Steam/Epic не поддерживаются)</span></div>
+
+      <!-- LOGIN -->
+      <div id="login-form" class="auth-form">
+        <input type="email" id="login-email" placeholder="Email" />
+        <input type="password" id="login-pass" placeholder="Пароль" />
+        <button class="btn-main" onclick="loginUser()">ВОЙТИ</button>
+        <div id="login-error" class="error-msg"></div>
+      </div>
+
+      <!-- REGISTER -->
+      <div id="register-form" class="auth-form hidden">
+        <input type="text" id="reg-nick" placeholder="Никнейм (для игры)" />
+        <input type="email" id="reg-email" placeholder="Email" />
+        <input type="password" id="reg-pass" placeholder="Пароль" />
+        <input type="password" id="reg-pass2" placeholder="Повторите пароль" />
+        <button class="btn-main" onclick="registerUser()">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+        <div id="reg-error" class="error-msg"></div>
       </div>
     </div>
   </div>
-</section>
 
-<section class="auth" id="auth">
-  <div class="wrap">
-    <div class="auth-grid">
-
-      <div class="auth-visual">
-        <div class="auth-visual-top">
-          <div class="logo">
-            <div class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19V5l14 14V5"/></svg></div>
-            <div class="logo-text">NOVUS <span>RP</span></div>
-          </div>
-          <h2>Добро пожаловать в город, который не прощает ошибок</h2>
-          <p>Один аккаунт — доступ к сайту, лаунчеру и форуму проекта.</p>
-          <div class="auth-stats">
-            <div><b>4 218</b><span>анкет одобрено</span></div>
-            <div><b>312</b><span>в городе сейчас</span></div>
-          </div>
-        </div>
-        <div class="auth-visual-bottom"></div>
-        <div class="skyline-mini" id="skylineMini"></div>
+  <!-- MAIN LAUNCHER SCREEN -->
+  <div id="main-screen" class="screen hidden">
+    <div class="top-bar">
+      <div class="logo-small"><span class="logo-black">BLACK</span><span class="logo-rp">ROLEPLAY</span></div>
+      <nav class="nav-tabs">
+        <button class="nav-tab active" onclick="showTab('news')">НОВОСТИ</button>
+        <button class="nav-tab" onclick="showTab('servers')">СЕРВЕРЫ</button>
+        <button class="nav-tab" onclick="showTab('settings')">НАСТРОЙКИ</button>
+      </nav>
+      <div class="user-info">
+        <span id="user-nick-display">Игрок</span>
+        <button class="btn-logout" onclick="logoutUser()">Выйти</button>
       </div>
+    </div>
 
-      <div class="auth-card">
-        <div class="tab-switch">
-          <button class="active" data-tab="login">Вход</button>
-          <button data-tab="register">Регистрация</button>
-        </div>
-
-        <!-- LOGIN -->
-        <form id="loginForm" novalidate>
-          <div class="form-feedback" id="loginFeedback">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-            <span>Готово, выполняется вход…</span>
-          </div>
-          <div class="field">
-            <label for="loginEmail">Email или никнейм</label>
-            <div class="field-input">
-              <input type="text" id="loginEmail" placeholder="player@novus-rp.com">
+    <div class="main-content">
+      <!-- NEWS TAB -->
+      <div id="tab-news" class="tab-content active">
+        <h2 class="tab-title">НОВОСТИ СЕРВЕРА</h2>
+        <div class="news-grid">
+          <div class="news-card" onclick="openNews(1)">
+            <img src="assets/NEWS1.png" onerror="this.style.display='none'" alt="News"/>
+            <div class="news-info">
+              <div class="news-date">20.06.2025</div>
+              <div class="news-title">Открытие сервера Mayami [1]!</div>
             </div>
           </div>
-          <div class="field">
-            <label for="loginPass">Пароль</label>
-            <div class="field-input">
-              <input type="password" id="loginPass" placeholder="••••••••">
-              <button type="button" class="eye-toggle" data-target="loginPass">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
-              </button>
+          <div class="news-card" onclick="openNews(2)">
+            <img src="assets/NEWS2.png" onerror="this.style.display='none'" alt="News"/>
+            <div class="news-info">
+              <div class="news-date">18.06.2025</div>
+              <div class="news-title">Обновление системы фракций</div>
             </div>
           </div>
-          <div class="row-between">
-            <label style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-dim);">
-              <input type="checkbox" style="accent-color:var(--violet);"> Запомнить меня
-            </label>
-            <a href="#" class="link-sm">Забыли пароль?</a>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">
-            <span class="spinner" id="loginSpinner"></span>
-            <span id="loginBtnText">Войти</span>
-          </button>
-        </form>
-
-        <!-- REGISTER -->
-        <form id="registerForm" novalidate style="display:none;">
-          <div class="form-feedback" id="registerFeedback">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-            <span>Аккаунт создан! Проверь почту для подтверждения.</span>
-          </div>
-          <div class="field">
-            <label for="regNick">Никнейм</label>
-            <div class="field-input"><input type="text" id="regNick" placeholder="John_Doe"></div>
-          </div>
-          <div class="field">
-            <label for="regEmail">Email</label>
-            <div class="field-input"><input type="email" id="regEmail" placeholder="player@novus-rp.com"></div>
-          </div>
-          <div class="field">
-            <label for="regPass">Пароль</label>
-            <div class="field-input">
-              <input type="password" id="regPass" placeholder="Минимум 8 символов">
-              <button type="button" class="eye-toggle" data-target="regPass">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
-              </button>
-            </div>
-          </div>
-          <div class="field">
-            <label for="regPass2">Подтверждение пароля</label>
-            <div class="field-input">
-              <input type="password" id="regPass2" placeholder="Повтори пароль">
-              <button type="button" class="eye-toggle" data-target="regPass2">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
-              </button>
-            </div>
-            <div class="err-msg" id="passMismatch">Пароли не совпадают</div>
-          </div>
-          <div class="checkbox-row">
-            <input type="checkbox" id="regRules">
-            <label for="regRules">Я согласен с <a href="#">правилами проекта</a> и принимаю условия использования</label>
-          </div>
-          <button type="submit" class="btn btn-primary btn-block">
-            <span class="spinner" id="regSpinner"></span>
-            <span id="regBtnText">Зарегистрироваться</span>
-          </button>
-        </form>
-
-        <div class="switch-note" id="switchNote">
-          Нет аккаунта? <a href="#" data-switch="register">Зарегистрироваться</a>
         </div>
       </div>
 
+      <!-- SERVERS TAB -->
+      <div id="tab-servers" class="tab-content hidden">
+        <h2 class="tab-title">СПИСОК СЕРВЕРОВ</h2>
+        <div class="server-list">
+          <div class="server-card">
+            <div class="server-status online"></div>
+            <div class="server-details">
+              <div class="server-name">🌴 Mayami [1]</div>
+              <div class="server-ip" id="server-ip-display">play.blackroleplay.net:25565</div>
+              <div class="server-version">Java 1.20.1</div>
+            </div>
+            <div class="server-right">
+              <div class="server-ping" id="server-ping">-- ms</div>
+              <button class="btn-play" onclick="launchGame()">▶ ИГРАТЬ</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SETTINGS TAB -->
+      <div id="tab-settings" class="tab-content hidden">
+        <h2 class="tab-title">НАСТРОЙКИ</h2>
+        <div class="settings-grid">
+          <div class="setting-group">
+            <label>Папка Minecraft</label>
+            <div class="path-row">
+              <input type="text" id="mc-path" placeholder="C:\Users\...\AppData\Roaming\.minecraft" readonly/>
+              <button class="btn-browse" onclick="browsePath()">📁 Обзор</button>
+            </div>
+          </div>
+          <div class="setting-group">
+            <label>Тип клиента</label>
+            <select id="mc-client">
+              <option value="tlauncher">TLauncher</option>
+              <option value="clauncher">CLauncher</option>
+              <option value="license">Лицензия (Official)</option>
+            </select>
+          </div>
+          <div class="setting-group">
+            <label>Версия Java</label>
+            <select id="java-ver">
+              <option value="17">Java 17 (рекомендуется)</option>
+              <option value="21">Java 21</option>
+              <option value="11">Java 11</option>
+            </select>
+          </div>
+          <div class="setting-group">
+            <label>Никнейм в игре</label>
+            <input type="text" id="game-nick" placeholder="Ваш никнейм" />
+            <button class="btn-save" onclick="saveNick()">Сохранить</button>
+          </div>
+          <div class="setting-group">
+            <label>Эффекты фона лаунчера</label>
+            <select id="bg-effect" onchange="changeBg()">
+              <option value="particles">Частицы</option>
+              <option value="matrix">Матрица</option>
+              <option value="none">Отключить</option>
+            </select>
+          </div>
+          <div class="setting-group full">
+            <label>IP Сервера (для смены)</label>
+            <input type="text" id="server-ip-input" placeholder="play.blackroleplay.net:25565"/>
+            <button class="btn-save" onclick="saveServerIP()">Сохранить IP</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM INSTALL/PLAY BAR -->
+    <div class="bottom-bar">
+      <div class="version-info">Black Roleplay Launcher v1.0 | MC 1.20.1</div>
+      <div class="bottom-btns">
+        <button class="btn-install" onclick="installPack()">⬇ УСТАНОВИТЬ СБОРКУ</button>
+        <button class="btn-play-main" onclick="launchGame()">▶ ИГРАТЬ</button>
+      </div>
     </div>
   </div>
-</section>
 
-<footer>
-  <div class="wrap">
-    <div class="footer-bottom">
-      <span>© 2026 Novus Roleplay</span>
-      <span><a href="#">Discord</a> · <a href="#">VK</a> · <a href="novus-roleplay.html">На главную</a> · <a href="#">Поддержка</a></span>
+  <!-- INSTALL PROGRESS OVERLAY -->
+  <div id="install-overlay" class="overlay hidden">
+    <div class="install-box">
+      <div class="install-title">Установка сборки Black Roleplay</div>
+      <div class="install-step" id="install-step">Подготовка...</div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="progress-text" id="progress-text">0%</div>
     </div>
   </div>
-</footer>
 
-<script>
-  // mini skyline for auth visual
-  const skylineMini = document.getElementById('skylineMini');
-  const heightsMini = [40,70,55,95,60,110,45,85,65,100,50,80,42,90,58,75];
-  heightsMini.forEach(h=>{
-    const b = document.createElement('div');
-    b.className = 'building';
-    b.style.height = h+'px';
-    skylineMini.appendChild(b);
-  });
-
-  // requirements tab toggle
-  document.querySelectorAll('.reqs-head button').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      document.querySelectorAll('.reqs-head button').forEach(b=>b.classList.remove('active'));
-      document.querySelectorAll('.reqs-table').forEach(t=>t.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelector(`.reqs-table[data-req-table="${btn.dataset.req}"]`).classList.add('active');
-    });
-  });
-
-  // auth tab switching
-  const loginForm = document.getElementById('loginForm');
-  const registerForm = document.getElementById('registerForm');
-  const switchNote = document.getElementById('switchNote');
-  const tabButtons = document.querySelectorAll('.tab-switch button');
-
-  function setTab(tab){
-    tabButtons.forEach(b=>b.classList.toggle('active', b.dataset.tab === tab));
-    if(tab === 'login'){
-      loginForm.style.display = 'block';
-      registerForm.style.display = 'none';
-      switchNote.innerHTML = 'Нет аккаунта? <a href="#" data-switch="register">Зарегистрироваться</a>';
-    } else {
-      loginForm.style.display = 'none';
-      registerForm.style.display = 'block';
-      switchNote.innerHTML = 'Уже есть аккаунт? <a href="#" data-switch="login">Войти</a>';
-    }
-    attachSwitchNote();
-  }
-  tabButtons.forEach(b=> b.addEventListener('click', ()=> setTab(b.dataset.tab)));
-
-  function attachSwitchNote(){
-    const link = switchNote.querySelector('a');
-    link.addEventListener('click', e=>{
-      e.preventDefault();
-      setTab(link.dataset.switch);
-    });
-  }
-  attachSwitchNote();
-
-  // password visibility toggle
-  document.querySelectorAll('.eye-toggle').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const input = document.getElementById(btn.dataset.target);
-      input.type = input.type === 'password' ? 'text' : 'password';
-    });
-  });
-
-  // demo login submit
-  loginForm.addEventListener('submit', e=>{
-    e.preventDefault();
-    const spinner = document.getElementById('loginSpinner');
-    const text = document.getElementById('loginBtnText');
-    const btn = loginForm.querySelector('button[type="submit"]');
-    btn.disabled = true; spinner.classList.add('show'); text.textContent = 'Входим…';
-    setTimeout(()=>{
-      spinner.classList.remove('show'); text.textContent = 'Войти'; btn.disabled = false;
-      document.getElementById('loginFeedback').classList.add('show');
-    }, 1100);
-  });
-
-  // demo register submit with validation
-  registerForm.addEventListener('submit', e=>{
-    e.preventDefault();
-    const pass = document.getElementById('regPass');
-    const pass2 = document.getElementById('regPass2');
-    const mismatch = document.getElementById('passMismatch');
-
-    if(pass.value !== pass2.value || pass.value === ''){
-      pass2.classList.add('error');
-      mismatch.classList.add('show');
-      return;
-    }
-    pass2.classList.remove('error');
-    mismatch.classList.remove('show');
-
-    const spinner = document.getElementById('regSpinner');
-    const text = document.getElementById('regBtnText');
-    const btn = registerForm.querySelector('button[type="submit"]');
-    btn.disabled = true; spinner.classList.add('show'); text.textContent = 'Создаём аккаунт…';
-    setTimeout(()=>{
-      spinner.classList.remove('show'); text.textContent = 'Зарегистрироваться'; btn.disabled = false;
-      document.getElementById('registerFeedback').classList.add('show');
-    }, 1200);
-  });
-</script>
-
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
