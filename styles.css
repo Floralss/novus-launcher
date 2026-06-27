@@ -1,93 +1,24 @@
-body{
-    margin:0;
-    font-family:Poppins,sans-serif;
-    background:#090b12;
-    color:#fff;
-    overflow-x:hidden;
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #e0e0e0;
+    margin: 0;
 }
 
-.hero{
-    position:relative;
-    height:100vh;
-    background:url("img/hero.jpg") center center/cover no-repeat;
+.logo { font-size: 2rem; color: #ff00ff; text-shadow: 0 0 15px #ff00ff; }
+
+.btn {
+    background: linear-gradient(45deg, #ff00ff, #00ffff);
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-weight: bold;
 }
 
-.overlay{
-    position:absolute;
-    inset:0;
-    background:linear-gradient(
-        rgba(0,0,0,.65),
-        rgba(0,0,0,.85)
-    );
+.card {
+    background: rgba(30,30,60,0.85);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
-.navbar{
-    position:relative;
-    z-index:2;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:25px 80px;
-}
-
-.logo{
-    font-size:34px;
-    font-weight:700;
-    color:#36ff8a;
-    text-shadow:0 0 20px #36ff8a;
-}
-
-.menu{
-    display:flex;
-    gap:35px;
-}
-
-.menu a{
-    color:white;
-    text-decoration:none;
-    transition:.25s;
-}
-
-.menu a:hover{
-    color:#36ff8a;
-}
-
-.hero-content{
-    position:relative;
-    z-index:2;
-    height:85%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    text-align:center;
-}
-
-.hero-content h1{
-    font-size:90px;
-    margin:0;
-    text-shadow:0 0 30px #36ff8a;
-}
-
-.hero-content p{
-    font-size:24px;
-    color:#d5d5d5;
-    margin:20px 0 40px;
-}
-
-.download{
-    background:#36ff8a;
-    color:#000;
-    border:none;
-    padding:18px 45px;
-    font-size:20px;
-    border-radius:14px;
-    cursor:pointer;
-    transition:.3s;
-    box-shadow:0 0 30px #36ff8a;
-}
-
-.download:hover{
-    transform:translateY(-5px);
-    box-shadow:0 0 45px #36ff8a;
-}
+.rating { color: #ffd700; font-size: 1.5rem; }
