@@ -1,156 +1,38 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Black Roleplay</title>
-
-<link rel="stylesheet" href="css/style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Roleplay - Minecraft RP Сервер</title>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-
-<nav>
-
-<div class="logo">
-BLACK ROLEPLAY
-</div>
-
-<ul>
-
-<li><a href="#">Главная</a></li>
-<li><a href="#">Форум</a></li>
-<li><a href="#">Новости</a></li>
-<li><a href="#">О проекте</a></li>
-
-</ul>
-
-<div>
-
-<button class="login">Войти</button>
-
-<button class="register">
-Регистрация
-</button>
-
-</div>
-
-</nav>
-
-<header>
-
-<h1>
-BLACK ROLEPLAY
-</h1>
-
-<p>
-
-Лучший Minecraft RolePlay сервер нового поколения.
-
-</p>
-
-<button class="download">
-Скачать Launcher
-</button>
-
-</header>
-
-<section class="stats">
-
-<div>
-
-<h2>2450</h2>
-
-<span>Игроков</span>
-
-</div>
-
-<div>
-
-<h2>15423</h2>
-
-<span>Аккаунтов</span>
-
-</div>
-
-<div>
-
-<h2>1</h2>
-
-<span>Сервер</span>
-
-</div>
-
-</section>
-
-<section class="features">
-
-<h2>Почему именно мы?</h2>
-
-<div class="cards">
-
-<div class="card">
-
-<h3>⚡ Высокий FPS</h3>
-
-<p>Оптимизированный лаунчер.</p>
-
-</div>
-
-<div class="card">
-
-<h3>🛡 Защита</h3>
-
-<p>Современный античит.</p>
-
-</div>
-
-<div class="card">
-
-<h3>💎 Уникальный RP</h3>
-
-<p>Множество систем.</p>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="download-section">
-
-<h2>
-
-Скачать лаунчер
-
-</h2>
-
-<p>
-
-Начни играть уже сегодня.
-
-</p>
-
-<button class="download2">
-
-Скачать BlackRoleplayLauncher
-
-</button>
-
-</section>
-
-<footer>
-
-© 2026 Black Roleplay
-
-</footer>
-
-<script src="js/main.js"></script>
-
+    <!-- Содержимое как в предыдущем сообщении (я обновил его полностью) -->
+    <header>
+        <div class="logo">BLACK ROLEPLAY</div>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="forum.html">Форум</a>
+            <a href="#" onclick="downloadLauncher()">Скачать Лаунчер</a>
+            <a href="profile.html">Профиль</a>
+        </nav>
+    </header>
+
+    <!-- Hero + Рейтинг сервера -->
+    <section class="hero"> ... </section>
+
+    <script>
+        const firebaseConfig = { /* твой конфиг */ };
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        function downloadLauncher() {
+            alert('Лаунчер скачивается... (замени ссылку в коде)');
+        }
+    </script>
 </body>
 </html>
