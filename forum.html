@@ -1,8 +1,0 @@
-async function likePost(postId) {
-    if (!currentUser) return alert('Войдите в аккаунт');
-    const postRef = db.collection('posts').doc(postId);
-    await postRef.update({
-        likes: firebase.firestore.FieldValue.increment(1)
-    });
-    alert('Лайк поставлен!');
-}
