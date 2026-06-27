@@ -1,84 +1,156 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Black Roleplay | Главная</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Black Roleplay</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
 </head>
+
 <body>
 
-    <header>
-        <div class="logo">BLACK<span>RP</span></div>
-        <nav>
-            <a href="#" onclick="showSection('home')" id="nav-home" class="active">Главная</a>
-            <a href="#" onclick="showSection('forum')" id="nav-forum">Форум</a>
-        </nav>
-        <div class="user-controls">
-            <span id="user-email" style="display: none;"></span>
-            <button id="btn-login-modal" class="btn-primary" onclick="openModal('auth-modal')">Войти</button>
-            <button id="btn-logout" class="btn-danger" style="display: none;" onclick="logout()">Выйти</button>
-        </div>
-    </header>
+<nav>
 
-    <section id="home" class="active-section page-section">
-        <div class="hero">
-            <h1>Добро пожаловать на <span>BLACK RP</span></h1>
-            <p>Начни свою историю прямо сейчас. Скачай лаунчер и присоединяйся к тысячам игроков.</p>
-            <a href="BlackRoleplay.zip" download="BlackRoleplay.zip" class="download-btn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
-                Скачать Лаунчер
-            </a>
-        </div>
-    </section>
+<div class="logo">
+BLACK ROLEPLAY
+</div>
 
-    <section id="forum" class="page-section" style="display: none;">
-        <div class="forum-header">
-            <h2>Форум проекта</h2>
-            <div id="auth-warning" class="warning-text">Для создания тем необходимо авторизоваться</div>
-            <button id="btn-create-post" class="btn-primary" style="display:none;" onclick="openModal('post-modal')">Создать тему</button>
-        </div>
+<ul>
 
-        <div class="forum-category">
-            <div class="category-title">Жалобы на игроков</div>
-            <div id="forum-posts" class="forum-nodes">
-                <div class="loading">Загрузка тем...</div>
-            </div>
-        </div>
-    </section>
+<li><a href="#">Главная</a></li>
+<li><a href="#">Форум</a></li>
+<li><a href="#">Новости</a></li>
+<li><a href="#">О проекте</a></li>
 
-    <div id="auth-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('auth-modal')">&times;</span>
-            <h2 id="auth-title">Вход в аккаунт</h2>
-            <div class="input-group">
-                <input type="email" id="email" placeholder="E-mail адрес">
-            </div>
-            <div class="input-group">
-                <input type="password" id="password" placeholder="Пароль">
-            </div>
-            <button id="auth-btn" class="btn-primary full-width" onclick="login()">Войти</button>
-            <p class="toggle-auth" onclick="toggleAuthMode()">Нет аккаунта? Зарегистрироваться</p>
-        </div>
-    </div>
+</ul>
 
-    <div id="post-modal" class="modal">
-        <div class="modal-content modal-large">
-            <span class="close" onclick="closeModal('post-modal')">&times;</span>
-            <h2>Создать новую тему</h2>
-            <div class="input-group">
-                <input type="text" id="post-title" placeholder="Заголовок темы (напр: Жалоба на ID 45)">
-            </div>
-            <div class="input-group">
-                <textarea id="post-content" placeholder="Ваш ник:&#10;Ник нарушителя:&#10;Суть жалобы:&#10;Доказательства (ссылка):"></textarea>
-            </div>
-            <button class="btn-primary full-width" onclick="createPost()">Опубликовать</button>
-        </div>
-    </div>
+<div>
 
-    <script src="app.js"></script>
+<button class="login">Войти</button>
+
+<button class="register">
+Регистрация
+</button>
+
+</div>
+
+</nav>
+
+<header>
+
+<h1>
+BLACK ROLEPLAY
+</h1>
+
+<p>
+
+Лучший Minecraft RolePlay сервер нового поколения.
+
+</p>
+
+<button class="download">
+Скачать Launcher
+</button>
+
+</header>
+
+<section class="stats">
+
+<div>
+
+<h2>2450</h2>
+
+<span>Игроков</span>
+
+</div>
+
+<div>
+
+<h2>15423</h2>
+
+<span>Аккаунтов</span>
+
+</div>
+
+<div>
+
+<h2>1</h2>
+
+<span>Сервер</span>
+
+</div>
+
+</section>
+
+<section class="features">
+
+<h2>Почему именно мы?</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<h3>⚡ Высокий FPS</h3>
+
+<p>Оптимизированный лаунчер.</p>
+
+</div>
+
+<div class="card">
+
+<h3>🛡 Защита</h3>
+
+<p>Современный античит.</p>
+
+</div>
+
+<div class="card">
+
+<h3>💎 Уникальный RP</h3>
+
+<p>Множество систем.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="download-section">
+
+<h2>
+
+Скачать лаунчер
+
+</h2>
+
+<p>
+
+Начни играть уже сегодня.
+
+</p>
+
+<button class="download2">
+
+Скачать BlackRoleplayLauncher
+
+</button>
+
+</section>
+
+<footer>
+
+© 2026 Black Roleplay
+
+</footer>
+
+<script src="js/main.js"></script>
+
 </body>
 </html>
