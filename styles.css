@@ -1,0 +1,38 @@
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background-color: #121212; color: #ffffff; }
+
+/* Шапка сайта */
+header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: #1e1e1e; border-bottom: 2px solid #ff4757; }
+.logo { font-size: 24px; font-weight: bold; text-transform: uppercase; }
+.logo span { color: #ff4757; }
+nav a { color: #fff; text-decoration: none; margin: 0 15px; font-size: 16px; transition: 0.3s; }
+nav a:hover { color: #ff4757; }
+button { background: #ff4757; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 5px; font-weight: bold; transition: 0.3s; }
+button:hover { background: #ff6b81; }
+
+/* Главная (Hero) */
+.hero { text-align: center; padding: 100px 20px; }
+.hero h1 { font-size: 48px; margin-bottom: 20px; }
+.hero h1 span { color: #ff4757; }
+.hero p { font-size: 18px; color: #aaa; margin-bottom: 40px; }
+.download-btn { background: linear-gradient(90deg, #ff4757, #ff6b81); color: white; text-decoration: none; padding: 15px 40px; font-size: 20px; border-radius: 8px; font-weight: bold; display: inline-block; box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4); }
+
+/* Форум */
+.forum-container { max-width: 1000px; margin: 40px auto; padding: 20px; }
+.forum-container h2 { border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 20px; }
+.post-form { background: #1e1e1e; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+.post-form input, .post-form textarea { width: 100%; padding: 10px; margin: 10px 0; background: #2f3542; border: 1px solid #57606f; color: white; border-radius: 5px; }
+.post-form textarea { height: 100px; resize: none; }
+.post { background: #1e1e1e; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid #ff4757; }
+.post h4 { margin-bottom: 5px; color: #ff4757; }
+.post p { color: #ced6e0; font-size: 14px; margin-bottom: 10px;}
+.post small { color: #747d8c; font-size: 12px; }
+
+/* Модальное окно */
+.modal { display: none; position: fixed; z-index: 10; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); }
+.modal-content { background-color: #1e1e1e; margin: 15% auto; padding: 30px; border: 1px solid #333; width: 350px; border-radius: 8px; text-align: center; position: relative;}
+.modal-content input { width: 100%; padding: 12px; margin: 10px 0; background: #2f3542; border: none; color: white; border-radius: 5px; }
+.close { position: absolute; right: 15px; top: 10px; color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; }
+.close:hover { color: #fff; }
+.toggle-auth { margin-top: 15px; color: #ff4757; cursor: pointer; font-size: 14px; }
+.toggle-auth:hover { text-decoration: underline; }
