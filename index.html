@@ -1,134 +1,115 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Black Roleplay — Minecraft RP Сервер</title>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Black Roleplay — Minecraft RP сервер 1.21</title>
 <link rel="stylesheet" href="css/main.css"/>
 </head>
-<body>
+<body class="logged-out">
 
-<!-- NAV -->
-<nav class="navbar">
-  <a class="nav-logo" href="index.html"><span class="nb">BLACK</span><span class="ng">ROLEPLAY</span></a>
-  <ul class="nav-links">
-    <li><a href="index.html" class="active">Главная</a></li>
-    <li><a href="forum.html">Форум</a></li>
-    <li><a href="factions.html">Фракции</a></li>
-    <li><a href="rules.html">Правила</a></li>
-    <li><a href="donate.html">Донат</a></li>
-    <li><a href="staff.html">Команда</a></li>
-  </ul>
-  <div class="nav-right">
-    <span class="online-badge">🟢 Онлайн: <span id="online-count">—</span></span>
-    <a href="login.html" class="btn-nav">Войти</a>
-    <a href="register.html" class="btn-nav accent">Регистрация</a>
-  </div>
-</nav>
+<nav class="navbar" id="main-nav"></nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-content">
-    <div class="hero-badge">✦ СЕРВЕР ОТКРЫТ ✦</div>
-    <h1 class="hero-title"><span class="hn">BLACK</span><span class="hg">ROLEPLAY</span></h1>
-    <p class="hero-sub">Лучший Minecraft Roleplay сервер на версии 1.21<br>Живи жизнью своего персонажа в городе Майами</p>
-    <div class="hero-ip">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="h-badge">✦ СЕРВЕР ОТКРЫТ ✦</div>
+    <h1 class="h-title"><span class="hn">BLACK</span><span class="hg">ROLEPLAY</span></h1>
+    <p class="h-sub">Лучший Minecraft RolePlay сервер на версии 1.21<br>Живи жизнью своего персонажа в городе Майами</p>
+    <div class="h-ip-wrap">
       <span>play.blackroleplay.net</span>
       <button onclick="copyIP()">📋 Копировать</button>
     </div>
-    <div class="hero-btns">
-      <a href="#download" class="btn-hero-main">⬇ Скачать лаунчер</a>
-      <a href="factions.html" class="btn-hero-sec">🏙 Фракции</a>
+    <div class="h-btns">
+      <a href="#download" class="btn-hero main">⬇ Скачать лаунчер</a>
+      <a href="factions.html" class="btn-hero sec">🏙 Фракции</a>
     </div>
-  </div>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-n">1.21</div><div class="stat-l">Версия</div></div>
-    <div class="stat"><div class="stat-n" id="stat-online">500+</div><div class="stat-l">Игроков</div></div>
-    <div class="stat"><div class="stat-n">10+</div><div class="stat-l">Фракций</div></div>
-    <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">Онлайн</div></div>
+    <div class="h-stats">
+      <div class="h-stat"><div class="h-stat-n">1.21</div><div class="h-stat-l">Версия</div></div>
+      <div class="h-stat"><div class="h-stat-n live-online">—</div><div class="h-stat-l">Онлайн</div></div>
+      <div class="h-stat"><div class="h-stat-n">10+</div><div class="h-stat-l">Фракций</div></div>
+      <div class="h-stat"><div class="h-stat-n">24/7</div><div class="h-stat-l">Работает</div></div>
+    </div>
   </div>
 </section>
 
 <!-- FEATURES -->
-<section class="features" id="features">
+<section class="section dark">
   <div class="container">
-    <h2 class="sec-title">ВОЗМОЖНОСТИ СЕРВЕРА</h2>
-    <div class="features-grid">
-      <div class="feat-card"><div class="feat-icon">🚔</div><h3>Фракции</h3><p>ЛСПД, ФИБ, Шерифка, Армия, Больница, Мафии и Банды — 10 рангов в каждой</p></div>
-      <div class="feat-card"><div class="feat-icon">🏠</div><h3>Недвижимость</h3><p>Покупай и продавай дома, сдавай в аренду или выставляй на аукцион</p></div>
-      <div class="feat-card"><div class="feat-icon">🚗</div><h3>Транспорт</h3><p>Огромный автопарк. Покупай машины, регистрируй номера, паркуйся по правилам</p></div>
-      <div class="feat-card"><div class="feat-icon">💰</div><h3>Экономика</h3><p>Работай, зарабатывай, открывай бизнесы. Реальная игровая экономика</p></div>
-      <div class="feat-card"><div class="feat-icon">⚖️</div><h3>Правосудие</h3><p>Система арестов, штрафов, тюрьмы, розыска — как в настоящем городе</p></div>
-      <div class="feat-card"><div class="feat-icon">💎</div><h3>Донат</h3><p>BLcoin — донат валюта. Транспорт, VIP, опыт. Без pay-to-win</p></div>
+    <div class="sec-head">
+      <div class="sec-title">ВОЗМОЖНОСТИ</div>
+      <div class="sec-sub">Всё что нужно для настоящего roleplay</div>
     </div>
-  </div>
-</section>
-
-<!-- DOWNLOAD -->
-<section class="download" id="download">
-  <div class="container">
-    <h2 class="sec-title">СКАЧАТЬ ЛАУНЧЕР</h2>
-    <div class="dl-box">
-      <div class="dl-logo"><span class="nb">BLACK</span><span class="ng">ROLEPLAY</span><br><span style="font-size:.7rem;color:#666;letter-spacing:2px;">LAUNCHER v1.0</span></div>
-      <div class="dl-info">
-        <div class="dl-row"><span>Версия игры:</span><span>Minecraft Java 1.21</span></div>
-        <div class="dl-row"><span>Требования:</span><span>Java 17+, Windows 10/11</span></div>
-        <div class="dl-row"><span>Размер:</span><span>~15 MB + сборка</span></div>
-        <div class="dl-row"><span>Firebase Auth:</span><span>✅ Регистрация/Вход</span></div>
-      </div>
-      <a href="BlackRoleplay_Setup.exe" class="btn-dl">⬇ Скачать для Windows</a>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-ic">🚔</div><h3>Фракции</h3><p>ЛСПД, ФИБ, Шерифка, Армия, Больница, Мафии и Банды — 10 рангов в каждой</p></div>
+      <div class="feat-card"><div class="feat-ic">🏠</div><h3>Недвижимость</h3><p>Покупай и продавай дома, сдавай в аренду, выставляй на аукцион</p></div>
+      <div class="feat-card"><div class="feat-ic">🚗</div><h3>Транспорт</h3><p>Большой автопарк. Покупай машины, регистрируй номера, штрафстоянка</p></div>
+      <div class="feat-card"><div class="feat-ic">💰</div><h3>Экономика</h3><p>Работай, открывай бизнесы, торгуй. Реальная игровая экономика</p></div>
+      <div class="feat-card"><div class="feat-ic">⚖️</div><h3>Правосудие</h3><p>Аресты, штрафы, тюрьма, розыск — как в настоящем городе</p></div>
+      <div class="feat-card"><div class="feat-ic">💎</div><h3>Донат</h3><p>BLcoin — донат валюта. Транспорт, VIP, опыт. Без pay-to-win</p></div>
     </div>
   </div>
 </section>
 
 <!-- NEWS -->
-<section class="news-sec">
+<section class="section">
   <div class="container">
-    <h2 class="sec-title">НОВОСТИ</h2>
-    <div class="news-grid">
-      <article class="news-item big">
-        <div class="news-tag">ОТКРЫТИЕ</div>
+    <div class="sec-head">
+      <div class="sec-title">НОВОСТИ</div>
+    </div>
+    <div class="news-grid" id="news-grid">
+      <!-- Заполняется из Firestore -->
+      <div class="n-card big">
+        <span class="n-tag">ОТКРЫТИЕ</span>
         <h3>Открытие сервера Mayami [1]!</h3>
-        <p>Добро пожаловать на Black Roleplay! Первый сервер Mayami официально открыт. Регистрируйтесь и начинайте своё приключение в городе Майами.</p>
-        <div class="news-meta"><span>20.06.2025</span><a href="forum.html">Читать далее →</a></div>
-      </article>
-      <article class="news-item">
-        <div class="news-tag">ОБНОВЛЕНИЕ</div>
+        <p>Добро пожаловать на Black Roleplay! Первый сервер Mayami официально открыт. Регистрируйтесь и начинайте своё приключение.</p>
+        <div class="n-meta"><span>20.06.2025</span><a href="forum.html">Читать на форуме →</a></div>
+      </div>
+      <div class="n-card">
+        <span class="n-tag">ОБНОВЛЕНИЕ</span>
         <h3>Система фракций v2.0</h3>
-        <p>Добавлены новые ранги и возможности для всех фракций. 10 рангов, кастомные теги.</p>
-        <div class="news-meta"><span>19.06.2025</span></div>
-      </article>
-      <article class="news-item">
-        <div class="news-tag">ИВЕНТ</div>
-        <h3>День открытых дверей в ЛСПД</h3>
-        <p>Хочешь вступить в ЛСПД? Приходи на собеседование в эту субботу!</p>
-        <div class="news-meta"><span>18.06.2025</span></div>
-      </article>
+        <p>Добавлены новые ранги и кастомные теги для всех фракций.</p>
+        <div class="n-meta"><span>19.06.2025</span></div>
+      </div>
+      <div class="n-card">
+        <span class="n-tag">ИВЕНТ</span>
+        <h3>День открытых дверей — ЛСПД</h3>
+        <p>Хочешь вступить в ЛСПД? Приходи на собеседование!</p>
+        <div class="n-meta"><span>18.06.2025</span></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="container footer-inner">
-    <div class="footer-logo"><span class="nb">BLACK</span><span class="ng">ROLEPLAY</span></div>
-    <div class="footer-links">
-      <a href="rules.html">Правила</a>
-      <a href="donate.html">Донат</a>
-      <a href="forum.html">Форум</a>
-      <a href="staff.html">Команда</a>
+<!-- DOWNLOAD -->
+<section class="section dark" id="download">
+  <div class="container">
+    <div class="sec-head"><div class="sec-title">СКАЧАТЬ ЛАУНЧЕР</div></div>
+    <div class="dl-box">
+      <div class="dl-logo"><span class="nl">BLACK</span><span class="ng">ROLEPLAY</span><br><small style="font-size:.6rem;color:var(--muted);letter-spacing:2px;">LAUNCHER v1.0</small></div>
+      <div class="dl-rows">
+        <div class="dl-row"><span>Версия игры:</span><span>Minecraft Java 1.21</span></div>
+        <div class="dl-row"><span>Требования:</span><span>Java 17+, Windows 10/11</span></div>
+        <div class="dl-row"><span>Авторизация:</span><span>✅ Firebase (реальная регистрация)</span></div>
+        <div class="dl-row"><span>Установка:</span><span>✅ Автоматическая через лаунчер</span></div>
+      </div>
+      <a href="BlackRoleplay_Setup.exe" class="btn-dl" download>⬇ Скачать для Windows</a>
     </div>
-    <div class="footer-social">
-      <a href="#">Telegram</a>
-      <a href="#">Discord</a>
-      <a href="#">VK</a>
-    </div>
-    <div class="footer-cr">© 2025 Black Roleplay. Все права защищены.</div>
   </div>
-</footer>
+</section>
 
-<div id="toast-copy" class="copy-toast hidden">✅ IP скопирован!</div>
-<script src="js/main.js"></script>
+<footer class="footer" id="main-footer"></footer>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="js/firebase.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/footer.js"></script>
+<script>
+  renderNav('home');
+  renderFooter();
+</script>
 </body>
 </html>
